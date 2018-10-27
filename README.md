@@ -159,7 +159,7 @@ Seeing a RSA public key so tiny first thing that I thought of is to use an amazi
 New mail... Ok let's check it... Huh a link... let's open it... What the flying fuck is this. Ok let's not get alarmed, might be weird, but it has to be solvable. By how it's displayed it's obvious that the image (example image otp.png in the repo) above contains a code that has to be decoded and put into the field in the webpage.
 
 Inside the webpage you find a comment that's not left there for no reason:
-><!-- Hilbert Inc. All rights reserved -->
+> Hilbert Inc. All rights reserved 
 
 Since the image seems to be encrypted or encoded in a search for "hilbert crypto" the term "hilbert curves" appears several times. Inside the wikipedia webpage for [Hilbert Curves](https://en.wikipedia.org/wiki/Hilbert_curve) you can see how they work.
 
