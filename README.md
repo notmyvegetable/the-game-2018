@@ -33,18 +33,18 @@ It's not hard to see that there are several letter in bold inside of the text, a
 ## 3rd Level
 [Third mail](mail03)
 
-This last step for their test might seem hard for those that don't see at first glance what those number mean. They are hexadecimal, so you just use a tool like [asciitohex](https://asciitohex.com) to convert it and after conversion it's just numbers all over again, but they are decimal, so you convert them from decimal and get the flag.
+This last step for their test might seem hard for those that don't see at first glance what those numbers mean. They are hexadecimal, so you just use a tool like [asciitohex](https://asciitohex.com) to convert it and after conversion it's just numbers all over again, but they are decimal, so you convert them from decimal and get the flag.
 
-(Before going to the next level I'd like to mention to one of the organizers whose name starts with B that remember only has one m, and I've seen that typo quite a few times already ;) )
+(Before going to the next level I'd like to mention to one of the organizers whose name starts with B that remember has only one m, and I've seen that typo quite a few times already ;) )
 
 
 ## 4th Level
 [Fourth mail](mail04)
 
 You've been accepted into TheBlackJacks, now it's time for you to work for their clients.
-In this mail they're asking you to hack into an administration panel and send them money from it and you get a webpage link.
+In this mail they're asking you to hack into an administration panel and send them money from it, and you get a webpage link.
 
-First thing that crosses my mind to find an admin panel or similar is pulling out [gobuster](https://github.com/OJ/gobuster) or [dirbuster](https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project), and so I did and found out the admin panel very easily. Hint: php website.
+First thing that crosses my mind, that I can use to find an admin panel or similar, is pulling out [gobuster](https://github.com/OJ/gobuster) or [dirbuster](https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project), and so I did and found out the admin panel very easily. Hint: php website.
 
 Reply with the admin panel URL to advance.
 
@@ -77,7 +77,7 @@ Something I noticed previously is that you can do username enumeration. Putting 
 
 ![invalid](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-42-19.png)
 
-So we try until we find out one that works. Which "admin" is since we get this instead:
+So we try until we find out one that works. Which "admin" is, since we get this instead:
 
 ![invalidp](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-43-56.png)
 
@@ -150,7 +150,7 @@ And that's the pin. (+4 to hide the first bytes of the flag)
 
 You are given an image (credential.png on the repo), which is obviously a qr code, and when you decode it you get something resembling a RSA public key and some RSA encrypted data (creds.txt on the repo).
 
-Seeing a RSA public key so tiny first thing that I thought of is to use an amazing tool for RSA key analysis in CTFs called [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool), and running it on the key and the *base64 decoded* message, it gives you the flag.
+Seeing a RSA public key so tiny first thing that I thought of is to use an amazing tool for RSA key analysis in CTFs called [RsaCtfTool](https://github.com/Ganapati/RsaCtfTool), and running it on the key and the *base64 decoded* message, gives you the flag.
 
 
 ## 11th Level
