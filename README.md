@@ -17,7 +17,7 @@ You engage with them using a mail webclient, located in https://mail.biene.cat
 
 First thing that crossed my mind was clicking that link and checking for hidden things inside of it. But after 20 minutes of nothing, I decided to check the mail again and realized that whatever is hidden could be inside the mail itself.
 
-![img01](https://a.uguu.se/Rja4EflVbhws_chrome_2018-10-24_07-08-23.png)
+![img01](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_07-08-23.png)
 
 And it was. After you send the flag you receive the next mail.
 
@@ -42,7 +42,8 @@ This last step for their test might seem hard for those that don't see at first 
 You've been accepted into TheBlackJacks, now it's time for you to work for their clients.
 In this mail they're asking you to hack into an administration panel and send them money from it and you get a webpage link.
 
-First thing that crosses my mind to find an admin panel or similar is pulling out [gobuster](https://github.com/OJ/gobuster) or [dirbuster](https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project), and so I did and found out the admin panel very easily. 
+First thing that crosses my mind to find an admin panel or similar is pulling out [gobuster](https://github.com/OJ/gobuster) or [dirbuster](https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project), and so I did and found out the admin panel very easily. Hint: php website.
+
 Reply with the admin panel URL to advance.
 
 
@@ -60,7 +61,7 @@ In the body you find a JS function defined called "weeklyPIN", which takes an se
 
 The most common way to represent time as a number is epoch, so they could've easily used that as an input. With online tools like [https://www.epochconverter.com/](https://www.epochconverter.com/) you can convert time to epoch, since it says in the website it is changed every monday at 3:00AM every week, you are supposed to use that time.
 
-![time](https://a.uguu.se/c8VUK1u8GT47_chrome_2018-10-24_09-26-57.png)
+![time](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-26-57.png)
 
 Run that number as a parameter for the JS function found previously and that is the PIN!
 
@@ -72,19 +73,19 @@ Using the previously known knowledge of the cookie and now with the PIN we can s
 
 Something I noticed previously is that you can do username enumeration. Putting an invalid username blurts out:
 
-![invalid](https://a.uguu.se/YWtC2OSg4ILz_chrome_2018-10-24_09-42-19.png)
+![invalid](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-42-19.png)
 
 So we try until we find out one that works. Which "admin" is since we get this instead:
 
-![invalidp](https://a.uguu.se/pklCcNAZc7qw_chrome_2018-10-24_09-43-56.png)
+![invalidp](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-43-56.png)
 
 Now with a valid PIN and username we can try if the cookie auth bypass works by setting the cookie to true:
 
-![cookie](https://a.uguu.se/oDeP0kHoRKiy_chrome_2018-10-24_09-45-27.png)
+![cookie](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-45-27.png)
 
 Which it indeed does, now when you're inside the panel you see some more information, and when you go into your profile tab you see in 2 fields that you cannot write into, but the "Password" field, contains something.
 
-![passdw](https://a.uguu.se/Ghb2MhcXDvnf_chrome_2018-10-24_09-49-21.png)
+![passdw](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-24_09-49-21.png)
 
 The password (first few characters changed in the picture) is base64 encoded and all you need to do is decode it and send it in a mail.
 
@@ -110,7 +111,8 @@ You get a binary file attached in the mail (secdoor in the repo). The first thin
 
 Opening it in IDA you find out that the main function only prints "BMP" and exits, which is suspicious, since this is the file with the key.
 
-![BMP](https://a.uguu.se/MBEoaxxwsZTO_idaq64_2018-10-24_10-24-59.png)
+![BMP](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-24_10-24-59.png)
+
 If you check where that "BMP" string is located, you'll find there's 2 sectors of raw data that's never used inside of that file. First throught was to load the file inside of the tool they give you, and see what's in there. I first put all of those sectors inside their own files for ease of view, with a hex editor. 
 
 They seemed like weird data so I carried on and saw there was trailing data at the end of the file..
@@ -121,22 +123,23 @@ They seemed like weird data so I carried on and saw there was trailing data at t
 
 Another binary, cool! (sec_door.bin in the repo) Same process, open up in IDA and check for functionality, in this case it seems like it's encoding your input and comparing with a predefined pin.
 
-![main](https://a.uguu.se/sJF51RHwbrUH_idaq64_2018-10-26_12-18-23.png)
+![main](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-26_12-18-23.png)
+
 C equivalent.
 
-![main_c](https://a.uguu.se/Atods8GirU2g_idaq64_2018-10-26_12-19-55.png)
+![main_c](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-26_12-19-55.png)
 
 Let's check what that encode function does... Turns out all it does is call the function "mystery" on some parts of the string.
 
-![encode_c](https://a.uguu.se/iygY37rhBBwY_idaq64_2018-10-26_12-31-54.png)
+![encode_c](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-26_12-31-54.png)
 
 And the mystery function just swaps the content of the pointers it is given, in this case, characters.
 
-![mistery_c](https://a.uguu.se/2k4bHHLfZcVT_idaq64_2018-10-26_12-34-35.png)
+![mistery_c](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-26_12-34-35.png)
 
 So all you have to do to get the password, is reverse the pin in the way the "encode" function does. Easiest way to do that, run the binary on a debugger and let it do it for you, by passing it the pin and breaking on strcmp and checking the parameters.
 
-![debug](https://a.uguu.se/dPzHaH6QDhNZ_idaq64_2018-10-26_12-46-58.png)
+![debug](https://github.com/notmyvegetable/the-game-2018/blob/master/images/idaq64_2018-10-26_12-46-58.png)
 
 And that's the pin. (+4 to hide the first bytes of the flag)
 
@@ -172,13 +175,13 @@ This time you are given an image (hidden.png in the repo) with something hidden 
 
 After splitting the image in red, green, and blue layers and checking each one of them, I noticed the blue channel had something resembling letters in the background. (hidden in blue in the mail was added afterwards as a clue)
 
-![blue_channel](https://a.uguu.se/XGAvncB6Akqf_Photoshop_2018-10-27_07-51-57.png)
+![blue_channel](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/Photoshop_2018-10-27_07-51-57.png)
 
 And so I decided to make a script to take the blue channel, accentuate it and separate it from the rest (hidden.py takes image as first argument and number for when to accentuate as second).
 
 Some letters show up after you put 2 as the limit.
 
-![]()
+![letters](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/mail12/text.png)
 
 They seem to be reversed, and after reversing it, they seem to be passed through some ROT13 or similar, so after trying with different ROT values one of them gives in and the flag shows up.
 
@@ -197,15 +200,15 @@ Contact info: [Twitter](https://twitter.com/notmyvegetable)
 Follow me for pictures of cats and other cute animals, you can also DM me for any details on the write-up.
 
 [mail01]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail02]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail03]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail04]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail05]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail06]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail07]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail08]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail09]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail10]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail11]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail12]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
-[mail13]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail01/mail.html
+[mail02]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail02/mail.html
+[mail03]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail03/mail.html
+[mail04]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail04/mail.html
+[mail05]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail05/mail.html
+[mail06]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail06/mail.html
+[mail07]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail07/mail.html
+[mail08]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail08/mail.html
+[mail09]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail09/mail.html
+[mail10]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail10/mail.html
+[mail11]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail11/mail.html
+[mail12]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail12/mail.html
+[mail13]:https://github.com/notmyvegetable/the-game-2018/blob/master/mail13/mail.html
