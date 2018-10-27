@@ -11,6 +11,8 @@ This CTF had a healthy mix of everything as challenges, some harder than others,
 
 You engage with them using a mail webclient, located in https://mail.biene.cat
 
+<img src="https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/playagame.jpg" width="300" height="336">
+
 
 ## 1st Level
 [First mail](mail01)
@@ -194,6 +196,9 @@ Not really, it wasn't anything godly, it was just going to the coordinates and g
 
 ## You Win The Game
 This edition of The Game was awesome, and the effort put in by the staff shows, I hope they are able to make next editions as great or even better!
+
+<img src="https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/genius.jpg" width="300" height="380">
+
 
 Contact info: [Twitter](https://twitter.com/notmyvegetable)
 
