@@ -6,7 +6,9 @@ Level 8
 
 ### Preface
 In this write-up I will be explaining things and concepts as they were appearing back then in my mind, but I will not be showing any flags or spoonfeeding down to the littlest detail. You can follow along in [https://mail.biene.cat](https://mail.biene.cat).
+
 This CTF had a healthy mix of everything as challenges, some harder than others, but with a nice lore behind everything. TheBlackJacks, a NSA hacker group, opened a position in their ranks, and after some trial to get in they make you conduct some criminal activities.
+
 You engage with them using a mail webclient, located in https://mail.biene.cat
 
 
