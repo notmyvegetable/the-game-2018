@@ -54,7 +54,7 @@ In the panel you see "Username", "Password" and "Weekly PIN" fields, and in the 
 
 Next thing I did was check the cookies, and there was one called "logged" set to false. But after trying to set it to true and logging in with "admin:whatever" it doesn't seem to bypass the login. The thing you are asked for is the PIN, so let's find that first.
 
-In the body you find a JS function defined called "weeklyPIN", which takes an seemingly numerical input and returns a number.
+In the body you find a JS function defined called "weeklyPIN", which takes a seemingly numerical input and returns a number.
 >function weeklyPIN(a) {
 > return (((a >> 5)%18248502) << 3)*3;
 >}
@@ -95,7 +95,7 @@ The password (first few characters changed in the picture) is base64 encoded and
 
 After this level, things start getting slightly trickier. So you get a mail with an offer for a product that can make you stand strong against the challenges, both you and your little friend, if you have one.
 
-They give you a map (maze.png in the repo), and you need to find the length of the path to the room, taking in account the costs of passing through a guard or a security camera.
+They give you a map (maze.png in the repo), and you need to find the length of the path to the room, taking into account the costs of passing through a guard or a security camera.
 
 This can be done using any algorithm to find a path, since after looking at the map for a bit you start noticing there are no loops (and you can check manually later with your algorithm anyway), and so you make a script to turn the map from a png into an array of values, and run the algorithm on that (you can check mine on the repo, "maze.py").
 
