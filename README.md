@@ -1,8 +1,6 @@
 # The Game - 2018 Edition 
 Write-up for the beginner/intermediate CTF hosted in HackUPC.
 
-### To do
-Level 8
 
 ### Preface
 In this write-up I will be explaining things and concepts as they were appearing back then in my mind, but I will not be showing any flags or spoonfeeding down to the littlest detail. You can follow along in [https://mail.biene.cat](https://mail.biene.cat).
@@ -115,9 +113,21 @@ Opening it in IDA you find out that the main function only prints "BMP" and exit
 
 ![BMP](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-24_10-24-59.png)
 
-If you check where that "BMP" string is located, you'll find there's 2 sectors of raw data that's never used inside of that file. First throught was to load the file inside of the tool they give you, and see what's in there. I first put all of those sectors inside their own files for ease of view, with a hex editor. 
+But if you check the data segments in the file, you see there's a lot of data at the end that IDA doesn't even show in text mode.
 
-They seemed like weird data so I carried on and saw there was trailing data at the end of the file..
+![data_img](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/idaq64_2018-10-28_16-32-15.png)
+
+If you check it in a hex editor, you see some data that looks split into 2. (In picture, the obvious change) 
+
+![split](https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/HexEdit_2018-10-28_16-51-57.png)
+
+Taking all of that out and putting it on its own file and loading it into the tools they linked you, and playing around, you will end up seeing something.
+
+<img src="https://raw.githubusercontent.com/notmyvegetable/the-game-2018/master/images/chrome_2018-10-28_16-31-35.png" width="475" height="238">
+
+If you flip it you see a hex number and the symbol of xor, that hex number is a key. Having split the file properly you will have some random data that had nothing similar with what you represented on the tools, take that data, take the key, and xor all of that data with the key. 
+
+Final step is to load the data you xored into the tools, and you will see the flag.
 
 
 ## 9th Level
@@ -144,6 +154,7 @@ So all you have to do to get the password, is reverse the pin in the way the "en
 ![debug](https://github.com/notmyvegetable/the-game-2018/blob/master/images/idaq64_2018-10-26_12-46-58.png)
 
 And that's the pin. (+4 to hide the first bytes of the flag)
+
 
 ## 10th Level
 [Tenth mail](mail10)
@@ -187,12 +198,14 @@ Some letters show up after you put 2 as the limit.
 
 They seem to be reversed, and after reversing it, they seem to be passed through some ROT13 or similar, so after trying with different ROT values one of them gives in and the flag shows up.
 
+
 ## 13th Level
 [Thirteenth mail](mail13)
 
 The last frontier, one that you cannot cross unless you can traverse the boundaries of time and go back to HackUPC 2018 and beat me at The Game.
 
 Not really, it wasn't anything godly, it was just going to the coordinates and getting the flag, but you're not going to get it unless you ask me in person, and I barely ever appear so good luck if you want it.
+
 
 ## You Win The Game
 This edition of The Game was awesome, and the effort put in by the staff shows, I hope they are able to make next editions as great or even better!
